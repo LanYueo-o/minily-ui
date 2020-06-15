@@ -1,0 +1,77 @@
+/**
+ * @Auther: lanyue
+ * @UpdateDate: 2020/06/11/10:31
+ */
+.ly-button{
+    border: none;
+    height: 40px;
+    //padding: 0 15px;
+    margin: 0 5px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    min-width: 90px;
+    &:not(.is-disabled):hover{
+        cursor: pointer;
+        opacity: .8;
+    }
+    &:not(.is-round){
+        border-radius: 5px;
+    }
+    &:not(.ly-button--info){
+        border: none;
+    }
+    &:not(.ly-button--info,.ly-button--text){
+        border: none;
+        color: white;
+    }
+    span{
+        font-weight: 500;
+    }
+}
+.ly-button--info{
+    background: white;
+    border: 1px solid #dcdfe6;
+    color: black;
+}
+.ly-button--danger{
+    background:  #f56c6c;
+}
+.ly-button--warn{
+    background:  #e6a23c;
+}
+.ly-button--success{
+    background:  #67c23a;
+}
+.ly-button--primary{
+    background:  #5095fb;
+}
+.ly-button--text{
+    background:transparent;
+    color: #409eff;
+}
+.ly-button--mini{
+    height: 30px;
+    font-size: 12px;
+}
+.ly-button--small{
+    height: 35px;
+    font-size: 13px;
+}
+.ly-button--medium{
+    height: 38px;
+    font-size: 13px;
+}
+.ly-button--large{
+    height: 45px;
+    font-size: 16px;
+}
+.is-disabled{
+    opacity: .5;
+    &:hover{
+        cursor: not-allowed;
+    }
+}
+.is-round{
+    border-radius: 25px;
+}
