@@ -11,7 +11,17 @@
         }"
          @click="handleClick">
 
-        <span>{{ value === '' ? placeholder : value }}</span>
+        <input
+            class="ly-input"
+            :class="[
+                {
+                    'is-disabled': disabled
+                }
+            ]"
+            :value="value"
+            :disabled="disabled"
+            :placeholder="placeholder"
+        />
         <div class="ly-option-list" v-show="optionsStatus">
             <ul class="ly-option-ul">
 
@@ -22,13 +32,15 @@
             </ul>
         </div>
 
-        <i :class="[
+        <i v-if="!clearable || value === ''" :class="[
             'iconfont icon--down' ,
             optionsStatus ? 'ly-transform--down' : '',
             {
                 'ly-transform--up': clickStatus && !optionsStatus
             }
         ]"></i>
+
+        <i v-if="clearable && value !== ''" class="iconfont icon--clearable" @click="handleClean"></i>
     </div>
 </template>
 
@@ -40,13 +52,20 @@
             LyOption
         },
         props:{
-            placeholder: String,
+            placeholder: {
+                type: String,
+                default: '请选择'
+            },
             width: String,
             disabled: Boolean,
             size: {
                 type: String,
                 default: 'large'
             },
+            clearable: {
+                type: Boolean,
+                default: false
+            }
         },
         data(){
             return{
@@ -76,9 +95,12 @@
                 this.clickStatus = true;
             },
             handleOptionClick(params){
-                console.info(params)
                 this.value = params.label;
                 this.optionsStatus = false;
+            },
+
+            handleClean(){
+                this.value = '';
             }
         },
     }

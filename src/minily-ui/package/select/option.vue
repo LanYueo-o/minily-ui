@@ -10,7 +10,7 @@
         name: "ly-option",
         mixins: [Dispatch],
         props:{
-            label: String,
+            label: [String, Number],
             value: [String, Number],
         },
         methods:{

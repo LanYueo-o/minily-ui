@@ -1,6 +1,6 @@
 # minily-ui
 
-> A Vue.js project
+> 一款轻量的 ui 框架，执着于简单，高效，易用
 
 ## Build Setup
 

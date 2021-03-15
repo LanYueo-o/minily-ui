@@ -10,10 +10,12 @@
                 buttonSize ? 'ly-button--' + buttonSize : '',
                 {
                     'is-disabled': buttonDisabled,
-                    'is-round': round
+                    'is-round': round,
+                    'is-loading': loading
                 }
             ]"
         >
+            <i v-if="loading" class="iconfont icon--loading animation-icon"></i>
             <span><slot></slot></span>
         </button>
     </div>
@@ -23,10 +25,17 @@
     export default {
         name: "ly-button",
         props:{
-            type:String,
-            size: String,
+            type:{
+                type: String,
+                default: 'primary'
+            },
+            size: {
+                type: String,
+                default: 'small'
+            },
             disabled: Boolean,
-            round: Boolean
+            round: Boolean,
+            loading: Boolean
         },
         computed:{
             buttonSize(){
@@ -38,6 +47,7 @@
         },
         methods:{
             handleClick(evt){
+                if(this.loading) return false;
                 this.$emit('click',evt);
             }
         }

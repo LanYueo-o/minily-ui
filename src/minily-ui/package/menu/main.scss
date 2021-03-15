@@ -1,0 +1,124 @@
+.ly-menu{
+    border-right: 1px solid #e6e6e6;
+    list-style: none;
+    position: relative;
+    margin: 0;
+    padding-left: 0;
+    background-color: #fff;
+    &:before,:after{
+        display: table;
+        content: ' ';
+    }
+    .ly-submenu{
+        list-style: none;
+        margin: 0;
+        padding-left: 0;
+    }
+    .ly-menu-item{
+        height: 56px;
+        line-height: 56px;
+        font-size: 14px;
+        outline: none;
+        padding: 0 20px;
+        list-style: none;
+        cursor: pointer;
+        position: relative;
+        transition: rotate ease-in-out 3s;
+        box-sizing: border-box;
+        white-space: nowrap;
+        &:hover{
+            background: rgb(67,74,80);
+        }
+        .ly-submenu__icon-arrow{
+            position: absolute;
+            top: 0;
+            right: 20px;
+            transition: transform .3s;
+        }
+    }
+
+    .ly-transform--up{
+        animation: ani_up linear .2s;
+    }
+    @keyframes ani_up {
+        0%{
+            transform: rotate(180deg);
+        }
+        25%{
+            transform: rotate(135deg);
+        }
+        50%{
+            transform: rotate(90deg);
+        }
+        75%{
+            transform: rotate(45deg);
+        }
+        100%{
+            transform: rotate(0deg);
+        }
+    }
+
+    .ly-transform--down{
+        transform: rotate(180deg);
+        animation: ani_down linear .2s;
+    }
+    @keyframes ani_down {
+        0%{
+            transform: rotate(0deg);
+        }
+        25%{
+            transform: rotate(45deg);
+        }
+        50%{
+            transform: rotate(90deg);
+        }
+        75%{
+            transform: rotate(135deg);
+        }
+        100%{
+            transform: rotate(180deg);
+        }
+    }
+}
+.ly-menu-item-group{
+
+    .ly-menu-item-title{
+        height: 56px;
+        line-height: 56px;
+        font-size: 14px;
+        outline: none;
+        padding: 0 20px;
+        list-style: none;
+        cursor: pointer;
+        position: relative;
+        transition: border-color .3s,background-color .3s,color .3s;
+        box-sizing: border-box;
+        white-space: nowrap;
+        &:hover{
+            background: rgb(67,74,80);
+        }
+        .ly-select{
+            position: absolute;
+            top: 0;
+            right: 20px;
+        }
+    }
+}
+
+.ly-children{
+    list-style: none;
+    padding: initial;
+    .ly-menu-item-group{
+        div{
+            padding-left: 45px;
+        }
+    }
+}
+.ly-menu-vertical{
+    display: inline-block;
+    text-align: left;
+    &:not(.ly-menu-collapse){
+        width: 240px;
+        min-height: 400px;
+    }
+}

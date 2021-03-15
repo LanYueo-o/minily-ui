@@ -1,0 +1,63 @@
+.ly-pop-over{
+    position: absolute;
+    background: #fff;
+    min-width: 150px;
+    max-width: 200px;
+    border-radius: 4px;
+    border: 1px solid #ebeef5;
+    padding: 15px;
+    z-index: 2000;
+    color: #606266;
+    line-height: 1.4;
+    text-align: justify;
+    font-size: 14px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    word-break: break-all;
+    //margin-top: 45px;
+    &:not(.is--top):after{
+        position: absolute;
+        content: ' ';
+        width: 0;
+        height: 0;
+        top: -5px;
+        left: 20px;
+        border: transparent;
+        display: block;
+        border-style: solid;
+        border-width: 0 10px 6px 10px;
+        border-bottom: 10px solid #fff;
+    }
+    &:after{
+        position: absolute;
+        content: ' ';
+        width: 0;
+        height: 0;
+        bottom: -5px;
+        left: 20px;
+        border: transparent;
+        display: block;
+        border-style: solid;
+        border-width: 6px 10px 0 10px;
+        border-top: 10px solid #fff;
+    }
+    span{
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+.is--top{
+    //margin-top: -130px;
+}
+.is--bottom{
+    margin-top: 45px;
+}
+.slide-fade-enter-active {
+    transition: all 0ms ease;
+}
+.slide-fade-leave-active {
+    transition: all 0ms ease;
+    opacity: 0;
+}
+.slide-fade-enter, .slide-fade-leave-to{
+    //opacity: 0;
+}

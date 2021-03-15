@@ -5,6 +5,7 @@
     align-items: center;
     width: 100px;
     color: #606266;
+    min-inline-size: max-content;
     &:not(.is-disabled):hover{
         cursor: pointer;
         border: none;
@@ -25,11 +26,23 @@
         background: #5095fb;
         border-color: #5095fb;
         color: #5095fb;
-        &:after{
+        &:not(.is-disabled):after{
             width: 4px;
             height: 4px;
             border-radius: 100%;
             background-color: #fff;
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%) scale(1);
+            transition: transform .15s ease-in;
+        }
+        &:after{
+            width: 4px;
+            height: 4px;
+            border-radius: 100%;
+            background-color: #d2d2d2;
             content: "";
             position: absolute;
             left: 50%;
@@ -43,8 +56,7 @@
     }
     .ly-radio--span{
         font-weight: 500;
-        //color: #606266;
-        padding: 0 10px;
+        padding: 0 5px;
     }
 
     .is-disabled{

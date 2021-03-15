@@ -5,15 +5,20 @@
 .ly-button{
     border: none;
     height: 40px;
-    //padding: 0 15px;
-    margin: 0 5px;
+    //margin: 0 5px;
+    margin-right: 5px;
     color: white;
+    background: #5095fb;
     font-size: 14px;
     outline: none;
-    min-width: 90px;
-    &:not(.is-disabled):hover{
+    min-inline-size: max-content;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    &:not(.is-disabled,.is-loading):hover{
         cursor: pointer;
-        opacity: .8;
+        opacity: .5;
     }
     &:not(.is-round){
         border-radius: 5px;
@@ -24,6 +29,21 @@
     &:not(.ly-button--info,.ly-button--text){
         border: none;
         color: white;
+    }
+    .iconfont{
+        font-size: 14px;
+    }
+    .animation-icon{
+        display: inline-block;
+        animation: rotating 2s linear infinite;
+    }
+    @keyframes rotating{
+        from{
+            transform: rotate(0);
+        }
+        to{
+            transform: rotate(359deg);
+        }
     }
     span{
         font-weight: 500;
@@ -62,10 +82,6 @@
     height: 38px;
     font-size: 13px;
 }
-.ly-button--large{
-    height: 45px;
-    font-size: 16px;
-}
 .is-disabled{
     opacity: .5;
     &:hover{
@@ -74,4 +90,10 @@
 }
 .is-round{
     border-radius: 25px;
+}
+.is-loading{
+    opacity: .5;
+    &:hover{
+        cursor: auto;
+    }
 }

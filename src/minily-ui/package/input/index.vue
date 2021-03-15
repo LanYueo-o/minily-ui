@@ -3,18 +3,24 @@
         @mouseenter="hovering = true"
         @mouseleave="hovering = false"
     >
+
+        <!--输入编辑器前置append内容-->
+        <span class="ly-input-before" v-if="beforeIcon">
+            <i :class="'iconfont ' + beforeIcon"></i>
+        </span>
         <input
             class="ly-input--info"
             :class="[
                 size ? 'ly-input--' + size : '',
+                beforeIcon ? 'padding-move' : '',
                 {
                     'is-disabled': disabled
                 }
             ]"
-            :style="{
-                width : width + 'px',
-            }"
+            :style="{ width : width + 'px'}"
             :value="value"
+            :maxlength="maxlength"
+            :minlength="minlength"
             :placeholder="placeholder"
             :disabled="disabled"
             :type="showPassword ? (passwordVisible ? 'text': 'password') : type"
@@ -26,12 +32,11 @@
             @blur="handleBlur"
             @change="handleChange"
             @search="handleSearch"
-            onkeyup="value = value.replace(/\s+/g,'')"
         />
         <!--此处涉及\s:匹配任意空白符  \S:匹配任意非空白字符-->
 
         <!--输入编辑器后置append内容-->
-        <span class="ly-input-fix">
+        <span class="ly-input-fix" v-if="showClearAble || showPass || afterIcon">
             <!--clearable-->
             <span v-if="showClearAble" @click="handleClear">
                 <i class="iconfont icon--clearable"></i>
@@ -43,7 +48,7 @@
                 <i v-else class="iconfont icon--password-open"></i>
             </span>
 
-            <i @click="handleClick(beforeIcon)" :class="'iconfont ' + beforeIcon"></i>
+            <i v-if="afterIcon" @click="handleClick(afterIcon)" :class="'iconfont ' + afterIcon"></i>
         </span>
 
     </div>
@@ -73,7 +78,10 @@
                 default: 'larger'
             },
             beforeIcon: String,
-            width: String
+            afterIcon: String,
+            width: String,
+            maxlength: Number,
+            minlength: Number
         },
         data(){
             return{
@@ -81,11 +89,6 @@
                 isFocus: false,
                 hovering: false,
                 passwordVisible: false
-            }
-        },
-        watch:{
-            value(val){
-                // console.info(val)
             }
         },
         computed:{
@@ -98,15 +101,18 @@
             showPass(){
                 return  this.showPassword &&
                     !this.disabled
-            }
+            },
         },
         methods:{
             handleCompositionStart(){
-                // 输入编辑器开始新的输入时，会触发这个事件
+                // 输入编辑器开始中文输入时，会触发这个事件
                 this.isComposition = true;
             },
-            handleCompositionUpdate(){
-
+            handleCompositionUpdate(evt){
+                const text = evt.target.value;
+                const lastCharacter = text[text.length - 1] || '';
+                const reg = /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi;
+                this.isComposition = !reg.test(lastCharacter);
             },
             handleCompositionEnd(evt){
                 if(this.isComposition){
@@ -141,8 +147,8 @@
                 this.passwordVisible = !this.passwordVisible;
             },
 
-            handleClick(beforeIcon){
-                if(beforeIcon.indexOf('search') > -1){
+            handleClick(afterIcon){
+                if(afterIcon.indexOf('search') > -1){
                     this.handleSearch();
                 }else {
                     return false;

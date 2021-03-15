@@ -5,7 +5,6 @@
         { 'is-disabled': disabled },
         { 'is-checked': model == label }
     ]"
-        role="radio"
         :aria-checked="model == label"
         :aria-disabled="disabled"
         @keydown.space.stop.prevent="model = disabled ? model : label"
@@ -37,18 +36,13 @@
     </label>
 </template>
 <script>
-    import Dispatch from '../../../unit/dispatch';
-
     export default {
         name: 'ly-radio',
-        mixins: [Dispatch],
-
         props: {
             value: {},
             label: {},
             disabled: Boolean,
             name: String,
-            size: String
         },
         computed: {
             model: {

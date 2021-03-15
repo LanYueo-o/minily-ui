@@ -1,7 +1,7 @@
 {
   "name": "minily-ui",
-  "description": "A Vue.js project",
-  "version": "0.0.2",
+  "description": "一款轻量的 ui 框架，执着于简单，高效，易用",
+  "version": "0.0.7",
   "author": "py_20190715 <py20161201>",
   "license": "MIT",
   "private": false,
@@ -10,7 +10,10 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "vue": "^2.5.11"
+    "vue": "^2.5.11",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.5.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3"
   },
   "browserslist": [
     "> 1%",
@@ -32,13 +35,12 @@
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
   },
-
-    "keywords": [
-        "minily-ui"
-    ],
-    "main": "dist/minily-ui.js",
-    "files":[
-        "dist",
-        "src"
-    ]
+  "keywords": [
+    "minily-ui"
+  ],
+  "main": "dist/minily-ui.js",
+  "files": [
+    "dist",
+    "src"
+  ]
 }

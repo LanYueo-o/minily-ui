@@ -9,7 +9,8 @@ module.exports = {
   //   publicPath: '/dist/',
   //   filename: 'build.js'
   // },
-    entry: NODE_ENV == 'development' ? './src/main.js' : './src/package/index.js',
+    entry: NODE_ENV == 'development' ? './src/main.js' : './src/minily-ui/package/index.js',
+    // entry: NODE_ENV == 'development' ? './src/minily-ui/package/index.js' : './src/main.js',
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',//路径
